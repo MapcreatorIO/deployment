@@ -30,6 +30,7 @@ class ShellUtils {
         ).trim()
     }
 
+    @NonCPS
     static boolean isManualBuild() {
         return currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null
     }
