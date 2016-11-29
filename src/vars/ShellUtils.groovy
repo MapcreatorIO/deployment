@@ -35,7 +35,7 @@ def isManualBuild() {
 def ssh(String user, String host, String key, List commands) {
 	commandString = commands.join(';')
 
-	echo sprintf('Running the following commands on host %s@%s \n %s', [user, host, commands.join('\n')])
+	echo sprintf('Running the following commands on host %s@%s\n%s', [user, host, commands.join('\n')])
 
 	sshagent([key]) {
 		return sh(
@@ -50,7 +50,7 @@ def scp(String user, String host, String key, String from, String to) {
 
     sshagent(['f206c873-8c0b-481e-9c72-1ecb97a5213a']) {
         return sh(
-            script: sprintf("scp -o StrictHostKeyChecking=no -4CBr %s %s@%s:%s/", [from,, user, host, to]),
+            script: sprintf("scp -o StrictHostKeyChecking=no -4CBr %s %s@%s:%s/", [from, user, host, to]),
             returnStdout: true
         )
     }
