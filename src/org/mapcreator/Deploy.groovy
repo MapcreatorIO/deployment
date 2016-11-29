@@ -1,6 +1,6 @@
 package org.mapcreator;
 
-import org.mapcreator.*;
+import org.mapcreator.ShellUtils;
 
 class Deploy {
 	private String deployPath
@@ -15,8 +15,9 @@ class Deploy {
 			base += '/'
 		}
 
+
 		this.deployBase = sprintf('%s%s/%s/', [base, projectName, deployName])
-		this.deployPath = sprintf('%srevisions/jenkins-%s-${BUILD_NUMBER}-%s', [this.deployBase, shellUtils.getUnixEpoch(), shellUtils.getRevision()])
+		this.deployPath = sprintf('%srevisions/jenkins-%s-${BUILD_NUMBER}-%s', [this.deployBase, ShellUtils.getUnixEpoch(), ShellUtils.getRevision()])
 		this.debug = false
 	}
 
@@ -41,7 +42,7 @@ class Deploy {
 		commands += append
 
 		if(!this.debug) {
-			shellUtils.ssh(this.user, this.host, this.key, commands)
+			ShellUtils.ssh(this.user, this.host, this.key, commands)
 		} else {
 			println 'Debug SSH: \n'
 			println 'User: ' + this.user
@@ -55,7 +56,7 @@ class Deploy {
 		echo 'Copying files...'
 
 		if(!this.debug) {
-			shellUtils.scp(this.user, this.host, this.key, './*', deployPath + '/')			
+			ShellUtils.scp(this.user, this.host, this.key, './*', deployPath + '/')			
 		} else {
 			println 'Debug SCP: \n'
 			println 'User: ' + this.user
@@ -81,7 +82,7 @@ class Deploy {
 		finish += append
 
 		if(!this.debug) {
-			shellUtils.ssh(this.user, this.host, this.key, commands)
+			ShellUtils.ssh(this.user, this.host, this.key, commands)
 		} else {
 			println 'Debug SSH: \n'
 			println 'User: ' + this.user
