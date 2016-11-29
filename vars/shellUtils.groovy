@@ -48,7 +48,7 @@ def ssh(String user, String host, String key, List commands) {
 def scp(String user, String host, String key, String from, String to) {
     echo sprintf("Copying %s to %s on host %s@%s", [from, to, user, host])
 
-    sshagent(['f206c873-8c0b-481e-9c72-1ecb97a5213a']) {
+    sshagent([key]) {
         return sh(
             script: sprintf("scp -o StrictHostKeyChecking=no -4CBr %s %s@%s:%s/", [from, user, host, to]),
             returnStdout: true
