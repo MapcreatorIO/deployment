@@ -1,3 +1,5 @@
+@Library('deployment') _
+
 package org.mapcreator;
 
 class Deploy {
