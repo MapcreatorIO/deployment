@@ -1,6 +1,6 @@
 package org.mapcreator;
 
-@Library('deployment') _
+import org.mapcreator.*;
 
 class Deploy {
 	private String deployPath
