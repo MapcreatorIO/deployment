@@ -15,7 +15,7 @@ class DeployPHP implements Serializable {
 	private SecureShell shell
 
 	def steps
-	Deploy(steps) {
+	DeployPHP(steps) {
 		this.steps = steps
 	}
 
