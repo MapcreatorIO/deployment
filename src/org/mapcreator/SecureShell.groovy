@@ -29,7 +29,7 @@ class SecureShell implements Serializable {
 			commandString += item
 		}
 
-		echo sprintf("Key: %s\nUser: %s\nHost:%s\nCommands:\n%s", [this.key, this.user, this,host, commands.join('\n')])				
+		steps.echo sprintf("Key: %s\nUser: %s\nHost:%s\nCommands:\n%s", [this.key, this.user, this,host, commands.join('\n')])				
 
 		if(!debug) {
 			sshagent([this.key]) {
@@ -42,7 +42,7 @@ class SecureShell implements Serializable {
 	}	
 
 	def scp(String from, String to) {
-		echo sprintf("Copying %s to %s on host %s@%s with key %s", [from, to, this.user, this.host, this.key])
+		steps.echo sprintf("Copying %s to %s on host %s@%s with key %s", [from, to, this.user, this.host, this.key])
 
 		if(!debug) {
 			sshagent([this.key]) {

@@ -33,7 +33,7 @@ class Deploy implements Serializable {
 	}
 
 	def unStash() {
-		echo 'Unstashing'
+		steps.echo 'Unstashing'
 
 		step([$class: 'wsCleanup'])
 		unstash 'deployable'
@@ -54,7 +54,7 @@ class Deploy implements Serializable {
 	}
 
 	def copy() {
-		echo 'Copying files...'
+		steps.echo 'Copying files...'
 
 		if(!this.debug) {
 			this.shell.scp('./*', deployPath + '/')
