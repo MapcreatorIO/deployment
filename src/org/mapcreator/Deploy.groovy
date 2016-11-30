@@ -2,8 +2,9 @@ package org.mapcreator
 
 import org.mapcreator.SecureShell
 import org.mapcreator.ShUtils
+import java.io.Serializable
 
-class Deploy {
+class Deploy extends Serializable {
 	String deployPath
 	String deployBase
 	String host
