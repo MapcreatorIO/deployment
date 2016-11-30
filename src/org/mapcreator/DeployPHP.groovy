@@ -11,7 +11,7 @@ class DeployPHP implements Serializable {
 	private String user
 	private String host
 	private boolean debug
-	private ShUtils ShUtils
+	private ShUtils utils
 	private SecureShell shell
 
 	def steps
