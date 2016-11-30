@@ -43,8 +43,8 @@ class Deploy implements Serializable {
 		List commands = []
 		commands += prepend
 
-		commands += sprintf('mkdir -pv %s %s/shared', [deployPath, deployBasePath])
-		commands += sprintf('cd %s', [deployPath])
+		commands += sprintf('mkdir -pv %s %s/shared', [this.deployPath, this.deployBase])
+		commands += sprintf('cd %s', [this.deployPath])
 
 		commands += append
 
