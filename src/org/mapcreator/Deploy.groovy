@@ -4,13 +4,13 @@ import org.mapcreator.SecureShell
 import org.mapcreator.ShUtils
 
 class Deploy {
-	private String deployPath
-	private String deployBase
-	private String host
-	private String user
-	private boolean debug
-	private ShUtils utils
-	private SecureShell shell
+	String deployPath
+	String deployBase
+	String host
+	String user
+	boolean debug
+	ShUtils utils
+	SecureShell shell
 	
     def steps
   	Deploy(steps) {this.steps = steps}
