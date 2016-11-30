@@ -14,8 +14,8 @@ class Deploy implements Serializable {
     String host
     String user
 	boolean debug    
-    ShUtils shell
-    SecureShell utils
+    ShUtils utils
+    SecureShell shell
 
   	Deploy(steps, String key, String host, String user, boolean debug) {
   		this.steps = steps
