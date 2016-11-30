@@ -18,7 +18,7 @@ class Deploy implements Serializable {
     def shell
     def utils
     def debug
-  	Deploy(steps, String key, String host, String user, boolean debug = false) {
+  	Deploy(steps, key, host, user, debug) {
   		this.steps = steps
   		this.key = key
   		this.host = host
