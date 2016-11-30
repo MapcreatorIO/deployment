@@ -31,7 +31,7 @@ class DeployPHP implements Serializable {
 		this.shell.init(key, host, user, debug)
 
 		this.base = sprintf('%s%s/%s/', [base, project, environment])
-		this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), this.build, utils.getRevision()])
+		this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), build, utils.getRevision()])
 	}
 
 	def unStash() {
