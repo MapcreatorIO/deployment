@@ -11,20 +11,23 @@ class Deploy {
 	private boolean debug
 	private ShUtils utils
 	private SecureShell shell
+	
+    def steps
+  	Deploy(steps) {this.steps = steps}
 
 	def init(String key, String host, String user, String base, String projectName, String deployName, boolean debug = false) {
 		if(base[-1] != '/') {
 			base += '/'
 		}
 
-		this.utils = new ShUtils()
+		this.utils = new ShUtils(steps)
 
 		this.deployBase = sprintf('%s%s/%s/', [base, projectName, deployName])
 
 		this.deployPath = sprintf('%srevisions/jenkins-%s-${BUILD_NUMBER}-%s', [this.deployBase, utils.getUnixEpoch(), utils.getRevision()])
 		this.debug = debug
 
-		this.shell = new SecureShell()
+		this.shell = new SecureShell(steps)
 		this.shell.init(key, host, user, debug)
 	}
 

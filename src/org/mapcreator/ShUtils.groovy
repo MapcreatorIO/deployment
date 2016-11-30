@@ -1,16 +1,19 @@
 package org.mapcreator;
 
 class ShUtils {
+    def steps
+  	ShUtils(steps) {this.steps = steps}	
+
 	def rm(String path) {
-		sh "rm -vr ${path} || true"
+		steps.sh "rm -vr ${path} || true"
 	}
 
 	def mkdir(String path) {
-		sh "mkdir -pv ${path}"
+		steps.sh "mkdir -pv ${path}"
 	}
 
 	def getUnixEpoch() {
-		return sh(
+		return steps.sh(
 			script: 'date +%s',
 			returnStdout: true
 		).trim()
@@ -22,14 +25,14 @@ class ShUtils {
 	}
 	
 	def getLastTag() {
-	    return sh(
+	    return steps.sh(
 	        returnStdout: true,
 	        script: "git tag --sort version:refname | tail -1"
 	    ).trim()
 	}
 
 	def getRevision() {
-    	return sh(
+    	return steps.sh(
         	returnStdout: true,
         	script: 'git rev-parse HEAD'
     	).trim().take(6)

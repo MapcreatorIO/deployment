@@ -6,6 +6,9 @@ class SecureShell {
 	private String user;
 	private boolean debug;
 
+    def steps
+  	SecureShell(steps) {this.steps = steps}	
+
 	def init(String key, String host, String user, boolean debug = false) {
 		this.key = key
 		this.host = host
@@ -28,7 +31,7 @@ class SecureShell {
 
 		if(!debug) {
 			sshagent([this.key]) {
-				return sh(
+				return steps.sh(
 					script:  "ssh -o StrictHostKeyChecking=no ${this.user}@${this.host} << EOF\n${commandString}\nEOF",
 					returnStdout: true
 				)
@@ -41,7 +44,7 @@ class SecureShell {
 
 		if(!debug) {
 			sshagent([this.key]) {
-				return sh(
+				return steps.sh(
 					script: sprintf("scp -o StrictHostKeyChecking=no -4CBr %s %s@%s:%s/", [from, this.user, this.host, to]),
 					returnStdout: true
 				)
