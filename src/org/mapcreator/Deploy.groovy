@@ -35,7 +35,7 @@ class Deploy implements Serializable {
 	def unStash() {
 		steps.echo 'Unstashing'
 
-		steps.step([$class: 'wsCleanup'])
+		steps.step([$class: 'WsCleanup'])
 		steps.unstash 'deployable'
 	}
 
