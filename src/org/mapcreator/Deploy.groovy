@@ -4,7 +4,7 @@ import org.mapcreator.SecureShell
 import org.mapcreator.ShUtils
 import java.io.Serializable
 
-class Deploy extends Serializable {
+class Deploy implements Serializable {
 	String deployPath
 	String deployBase
 	String host
