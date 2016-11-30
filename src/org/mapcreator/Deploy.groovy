@@ -10,15 +10,14 @@ class Deploy implements Serializable {
 	String buildNumber
 	
     def steps
-    def key
-    def host
-    def user
-    def shell
-    def utils
-    def debug
+    String key
+    String host
+    String user
+    String shell
+    String utils
+    boolean debug
 
-    @NonCPS
-  	Deploy(steps, key, host, user, debug) {
+  	Deploy(steps, String key, String host, String user, boolean debug) {
   		this.steps = steps
   		this.key = key
   		this.host = host
