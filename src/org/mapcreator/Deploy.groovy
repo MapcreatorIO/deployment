@@ -8,8 +8,6 @@ class Deploy implements Serializable {
 	String deployPath
 	String deployBase
 	String buildNumber
-	
-    def steps
     String key
     String host
     String user
@@ -17,16 +15,9 @@ class Deploy implements Serializable {
     ShUtils utils
     SecureShell shell
 
-  	Deploy(steps, String key, String host, String user, boolean debug) {
+    def steps
+  	Deploy(steps) {
   		this.steps = steps
-  		this.key = key
-  		this.host = host
-  		this.user = user
-  		this.debug = debug
-
-		this.utils = new ShUtils(steps)
-		this.shell = new SecureShell(steps)
-		this.shell.init(key, host, user, debug)  		
   	}
 
 	def init(String base, String projectName, String deployName, String buildNumber) {
@@ -39,7 +30,10 @@ class Deploy implements Serializable {
 		this.deployBase = sprintf('%s%s/%s/', [base, projectName, deployName])
 
 		this.deployPath = sprintf('%srevisions/jenkins-%s-%s-%s', [this.deployBase, utils.getUnixEpoch(), this.buildNumber, utils.getRevision()])
-		this.debug = debug
+
+		this.utils = new ShUtils(steps)
+		this.shell = new SecureShell(steps)
+		this.shell.init(key, host, user, debug)  				
 	}
 
 	def unStash() {
