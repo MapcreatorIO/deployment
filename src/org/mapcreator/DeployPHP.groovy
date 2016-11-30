@@ -45,7 +45,7 @@ class DeployPHP implements Serializable {
 		List commands = []
 		commands += prepend
 
-		commands += sprintf('mkdir -pv %s %s/shared', [this.path, this.base])
+		commands += sprintf('mkdir -pv %s %sshared', [this.path, this.base])
 		commands += sprintf('cd %s', [this.path])		
 
 		commands += append
@@ -59,11 +59,11 @@ class DeployPHP implements Serializable {
 
 		for(item in shared) {
 			commands += sprintf('rm -rv %s/%s || true', [this.path, item])
-			commands += sprintf('ln -sv %s/shared/%s %s/%s', [this.base, item, this.path, item])									
+			commands += sprintf('ln -sv %sshared/%s %s/%s', [this.base, item, this.path, item])									
 		}
 
-		commands += sprintf('rm -v %s/current', [this.base])
- 		commands += sprintf('ln -svf %s %s/current', [this.path, this.base])				
+		commands += sprintf('rm -v %scurrent', [this.base])
+ 		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])				
 
  		commands += append
 
