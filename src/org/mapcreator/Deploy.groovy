@@ -35,12 +35,12 @@ class Deploy implements Serializable {
 	def unStash() {
 		steps.echo 'Unstashing'
 
-		steps.step([steps.$class: 'WsCleanup'])
+		steps.step([$class: 'WsCleanup'])
 		steps.unstash 'deployable'
 	}
 
 	def prepare(List prepend = [], List append = []) {
-		commands = []
+		List commands = []
 		commands += prepend
 
 		commands += sprintf('mkdir -pv %s %s/shared', [deployPath, deployBasePath])
@@ -62,18 +62,18 @@ class Deploy implements Serializable {
 	}	
 
 	def finish(List shared = [], List prepend = [], List append = []) {
-		finish = []
-		finish += prepend
+		List commands = []
+		commands += prepend
 
 		for(item in shared) {
-            finish += sprintf('rm -rv %s/%s || true', [this.deployPath, item])
-			finish += sprintf('ln -sv %s/shared/%s %s/%s', [this.deployBase, item, this.deployPath, item])			
+            commands += sprintf('rm -rv %s/%s || true', [this.deployPath, item])
+			commands += sprintf('ln -sv %s/shared/%s %s/%s', [this.deployBase, item, this.deployPath, item])			
 		}
 
-		finish += sprintf('rm -v %s/current', [this.deployBase])
- 		finish += sprintf('ln -svf %s %s/current', [this.deployPath, this.deployBase])		
+		commands += sprintf('rm -v %s/current', [this.deployBase])
+ 		commands += sprintf('ln -svf %s %s/current', [this.deployPath, this.deployBase])		
 		
-		finish += append
+		commands += append
 
 		if(!this.debug) {
 			this.shell.ssh(commands)
