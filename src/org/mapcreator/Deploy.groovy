@@ -1,4 +1,6 @@
 package org.mapcreator;
+@Library('deployment')
+import shellUtils
 
 class Deploy {
 	private String deployPath
