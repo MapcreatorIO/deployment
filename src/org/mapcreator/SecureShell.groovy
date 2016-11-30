@@ -32,7 +32,7 @@ class SecureShell implements Serializable {
 		steps.echo sprintf("Key: %s\nUser: %s\nHost: %s\nCommands:\n%s", [this.key, this.user, this.host, commands.join('\n')])				
 
 		if(!debug) {
-			sshagent([this.key]) {
+			steps.sshagent([this.key]) {
 				return steps.sh(
 					script:  "ssh -o StrictHostKeyChecking=no ${this.user}@${this.host} << EOF\n${commandString}\nEOF",
 					returnStdout: true
@@ -49,7 +49,7 @@ class SecureShell implements Serializable {
 		}
 
 		if(!debug) {
-			sshagent([this.key]) {
+			steps.sshagent([this.key]) {
 				return steps.sh(
 					script: sprintf("scp -o StrictHostKeyChecking=no -4CBr %s %s@%s:%s", [from, this.user, this.host, to]),
 					returnStdout: true
