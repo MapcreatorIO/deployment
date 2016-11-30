@@ -16,6 +16,8 @@ class Deploy implements Serializable {
     def shell
     def utils
     def debug
+
+    @NonCPS
   	Deploy(steps, key, host, user, debug) {
   		this.steps = steps
   		this.key = key
