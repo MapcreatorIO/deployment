@@ -48,17 +48,13 @@ class Deploy implements Serializable {
 
 		commands += append
 
-		if(!this.debug) {
-			this.shell.ssh(commands)
-		}
+		this.shell.ssh(commands)
 	}
 
 	def copy() {
 		steps.echo 'Copying files...'
 
-		if(!this.debug) {
-			this.shell.scp('./*', deployPath + '/')
-		}
+		this.shell.scp('./*', deployPath + '/')
 	}	
 
 	def finish(List shared = [], List prepend = [], List append = []) {
@@ -75,8 +71,6 @@ class Deploy implements Serializable {
 		
 		commands += append
 
-		if(!this.debug) {
-			this.shell.ssh(commands)
-		}
+		this.shell.ssh(commands)
 	}
 }
