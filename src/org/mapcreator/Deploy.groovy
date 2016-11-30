@@ -35,8 +35,8 @@ class Deploy implements Serializable {
 	def unStash() {
 		steps.echo 'Unstashing'
 
-		step([$class: 'wsCleanup'])
-		unstash 'deployable'
+		steps.step([$class: 'wsCleanup'])
+		steps.unstash 'deployable'
 	}
 
 	def prepare(List prepend = [], List append = []) {
