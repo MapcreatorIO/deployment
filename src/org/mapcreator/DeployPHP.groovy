@@ -70,7 +70,7 @@ class DeployPHP implements Serializable {
 		this.shell.ssh(commands) 		
 	}
 
-	def copy() {
+	def copy(String from) {
 		steps.echo "Copying files..."
 
 		this.shell.scp(from, this.path)
