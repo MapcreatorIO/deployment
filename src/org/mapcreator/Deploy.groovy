@@ -1,27 +1,31 @@
-package org.mapcreator;
-@Library('deployment')
-import shellUtils
+package org.mapcreator
+
+import org.mapcreator.SecureShell
+import org.mapcreator.ShUtils
 
 class Deploy {
 	private String deployPath
 	private String deployBase
-	private String key
 	private String host
 	private String user
 	private boolean debug
+	private ShUtils utils
+	private SecureShell shell
 
-	def init(String key, String host, String user, String base, String projectName, String deployName) {
+	def init(String key, String host, String user, String base, String projectName, String deployName, boolean debug = false) {
 		if(base[-1] != '/') {
 			base += '/'
 		}
 
-		this.deployBase = sprintf('%s%s/%s/', [base, projectName, deployName])
-		this.deployPath = sprintf('%srevisions/jenkins-%s-${BUILD_NUMBER}-%s', [this.deployBase, shellUtils.getUnixEpoch(), shellUtils.getRevision()])
-		this.debug = false
-	}
+		this.utils = new ShUtils()
 
-	def enableDebug() {
-		this.debug = true
+		this.deployBase = sprintf('%s%s/%s/', [base, projectName, deployName])
+
+		this.deployPath = sprintf('%srevisions/jenkins-%s-${BUILD_NUMBER}-%s', [this.deployBase, utils.getUnixEpoch(), utils.getRevision()])
+		this.debug = debug
+
+		this.shell = new SecureShell()
+		this.shell.init(key, host, user, debug)
 	}
 
 	def unStash() {
@@ -41,13 +45,7 @@ class Deploy {
 		commands += append
 
 		if(!this.debug) {
-			shellUtils.ssh(this.user, this.host, this.key, commands)
-		} else {
-			println 'Debug SSH: \n'
-			println 'User: ' + this.user
-			println 'Host: ' + this.host
-			println 'Key: ' + this.key
-			println 'Commands: \n' + commands.join('\n')
+			this.shell.ssh(commands)
 		}
 	}
 
@@ -55,14 +53,7 @@ class Deploy {
 		echo 'Copying files...'
 
 		if(!this.debug) {
-			shellUtils.scp(this.user, this.host, this.key, './*', deployPath + '/')			
-		} else {
-			println 'Debug SCP: \n'
-			println 'User: ' + this.user
-			println 'Host: ' + this.host
-			println 'Key: ' + this.key
-			println 'From: ' + './*'
-			println 'To: ' + deployPath + '/'
+			this.shell.scp('./*', deployPath + '/')
 		}
 	}	
 
@@ -81,13 +72,7 @@ class Deploy {
 		finish += append
 
 		if(!this.debug) {
-			shellUtils.ssh(this.user, this.host, this.key, commands)
-		} else {
-			println 'Debug SSH: \n'
-			println 'User: ' + this.user
-			println 'Host: ' + this.host
-			println 'Key: ' + this.key
-			println 'Commands: \n' + commands.join('\n')
+			this.shell.ssh(commands)
 		}
 	}
 }
