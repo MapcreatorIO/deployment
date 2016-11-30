@@ -7,6 +7,7 @@ import java.io.Serializable
 class Deploy implements Serializable {
 	String deployPath
 	String deployBase
+	String key
 	String host
 	String user
 	String buildNumber
