@@ -8,8 +8,6 @@ class Deploy implements Serializable {
 	String deployPath
 	String deployBase
 	String buildNumber
-	ShUtils utils
-	SecureShell shell
 	
     def steps
     def key
