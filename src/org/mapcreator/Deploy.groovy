@@ -7,15 +7,17 @@ import java.io.Serializable
 class Deploy implements Serializable {
 	String deployPath
 	String deployBase
-	String key
-	String host
-	String user
 	String buildNumber
-	boolean debug
 	ShUtils utils
 	SecureShell shell
 	
     def steps
+    def key
+    def host
+    def user
+    def shell
+    def utils
+    def debug
   	Deploy(steps, String key, String host, String user, boolean debug = false) {
   		this.steps = steps
   		this.key = key
