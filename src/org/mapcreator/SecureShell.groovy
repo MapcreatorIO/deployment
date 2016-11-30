@@ -44,10 +44,14 @@ class SecureShell implements Serializable {
 	def scp(String from, String to) {
 		steps.echo sprintf("Copying %s to %s on host %s@%s with key %s", [from, to, this.user, this.host, this.key])
 
+		if(to[-1] != '/') {
+			to += '/'
+		}
+
 		if(!debug) {
 			sshagent([this.key]) {
 				return steps.sh(
-					script: sprintf("scp -o StrictHostKeyChecking=no -4CBr %s %s@%s:%s/", [from, this.user, this.host, to]),
+					script: sprintf("scp -o StrictHostKeyChecking=no -4CBr %s %s@%s:%s", [from, this.user, this.host, to]),
 					returnStdout: true
 				)
 			}
