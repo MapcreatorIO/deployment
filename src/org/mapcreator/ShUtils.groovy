@@ -1,6 +1,8 @@
 package org.mapcreator;
 
-class ShUtils {
+import java.io.Serializable
+
+class ShUtils implements Serializable {
     def steps
   	ShUtils(steps) {this.steps = steps}	
 

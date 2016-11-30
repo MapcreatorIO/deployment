@@ -1,10 +1,12 @@
 package org.mapcreator;
 
-class SecureShell {
-	private String key;
-	private String host;
-	private String user;
-	private boolean debug;
+import java.io.Serializable
+
+class SecureShell implements Serializable {
+	String key;
+	String host;
+	String user;
+	boolean debug;
 
     def steps
   	SecureShell(steps) {this.steps = steps}	
