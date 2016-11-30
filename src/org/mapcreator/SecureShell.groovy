@@ -29,7 +29,7 @@ class SecureShell implements Serializable {
 			commandString += item
 		}
 
-		steps.echo sprintf("Key: %s\nUser: %s\nHost:%s\nCommands:\n%s", [this.key, this.user, this,host, commands.join('\n')])				
+		steps.echo sprintf("Key: %s\nUser: %s\nHost:%s\nCommands:\n%s", [this.key, this.user, this.host, commands.join('\n')])				
 
 		if(!debug) {
 			sshagent([this.key]) {
