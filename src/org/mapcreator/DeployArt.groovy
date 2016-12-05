@@ -6,6 +6,7 @@ import java.io.Serializable
 import org.mapcreator.DeployPHP
 
 class DeployArt extends DeployPHP {
+	@Override
 	def prepare(List prepend = [], List append = []) {
 		this.steps.echo 'Installing composer'
 		this.steps.sh 'composer install --quiet --no-dev'
@@ -21,6 +22,7 @@ class DeployArt extends DeployPHP {
 		this.shell.ssh(commands)
 	}
 
+	@Override
 	def finish(List shared = [], List prepend = [], List append = []) {
 		List commands = []
 		commands += prepend
