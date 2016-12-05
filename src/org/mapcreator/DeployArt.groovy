@@ -10,6 +10,7 @@ class DeployArt extends DeployPHP {
 	def prepare(List prepend = [], List append = []) {
 		this.steps.echo 'Installing composer'
 		this.steps.sh 'composer install --quiet --no-dev'
+		this.steps.sh 'composer dump-autoload --no-dev'
 
 		List commands = []
 		commands += prepend
