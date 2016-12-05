@@ -1,9 +1,5 @@
 package org.mapcreator
+import org.mapcreator.DeployPHP
 
-class DeployArt {
-
-	def steps
-	DeployArt(steps) {
-		this.steps = steps
-	}
+class DeployArt extends DeployPHP {
 }
