@@ -6,12 +6,6 @@ import java.io.Serializable
 import org.mapcreator.DeployPHP
 
 class DeployArt extends DeployPHP {
-
-	def steps
-	DeployArt(steps) {
-		this.steps = steps
-	}
-
 	def prepare(List prepend = [], List append = []) {
 		this.steps.echo 'Installing composer'
 		this.steps.sh 'composer install --quiet --no-dev'
