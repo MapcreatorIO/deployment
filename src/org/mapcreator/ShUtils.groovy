@@ -21,7 +21,6 @@ class ShUtils implements Serializable {
 		).trim()
 	}
 
-	@NonCPS
 	def isManualBuild() {
 		return current.build.rawBuild.getCause(hudson.model.Case$UserIdCase) != null
 	}
