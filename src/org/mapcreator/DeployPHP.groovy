@@ -5,14 +5,14 @@ import org.mapcreator.ShUtils
 import java.io.Serializable
 
 class DeployPHP implements Serializable {
-	private String path
-	private String base
-	private String key
-	private String user
-	private String host
-	private boolean debug
-	private ShUtils utils
-	private SecureShell shell
+	protected String path
+	protected String base
+	protected String key
+	protected String user
+	protected String host
+	protected boolean debug
+	protected ShUtils utils
+	protected SecureShell shell
 
 	def steps
 	DeployPHP(steps) {
