@@ -15,9 +15,9 @@ def getPassword(id) {
 
       def password = systemCredentialsProvider.credentials.first().password
     } else {
-      println "could not find credential for ${username}"
+      println "could not find credential for ${id}"
     }
-
+	
 	return password
 }
 
