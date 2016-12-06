@@ -82,12 +82,12 @@ class DeployPHP implements Serializable {
 	}
 
 	def untarRelease(url, token, path) {
-		this.utils.sh("mkdir ${path}")
-		this.utils.sh("wget ${url}?access_token=${token} -O ${path}/output.tar.gz")
-		this.utils.sh("mkdir ${path}/temp")
-		this.utils.sh("tar xf ${path}/output.tar.gz -C ${path}/temp")
-		this.utils.sh("mkdir ${path}/output")
-		this.utils.sh("mv ${path}/temp/*/* ${path}/output")
+		this.steps.sh("mkdir ${path}")
+		this.steps.sh("wget ${url}?access_token=${token} -O ${path}/output.tar.gz")
+		this.steps.sh("mkdir ${path}/temp")
+		this.steps.sh("tar xf ${path}/output.tar.gz -C ${path}/temp")
+		this.steps.sh("mkdir ${path}/output")
+		this.steps.sh("mv ${path}/temp/*/* ${path}/output")
 
 		return "${path}/output"
 	}
