@@ -3,7 +3,7 @@ package org.mapcreator
 import java.io.Serializable
 import org.kohsuke.github.GitHub
 
-class Release extends Serializable {
+class Release implements Serializable {
 	protected String username
 	protected String key
 
