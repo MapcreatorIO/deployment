@@ -15,8 +15,8 @@ class Release implements Serializable {
 	@NonCPS
 	def getLatest(repo) {
 		def git = GitHub.connect(this.username, this.key)
-		def repo = git.getRepository(repo)
-		def release = repo.listReleases()[0]
+		def repository = git.getRepository(repo)
+		def release = repository.listReleases()[0]
 
 		return release.getTarballUrl()
 	}
