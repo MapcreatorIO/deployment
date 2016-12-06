@@ -32,7 +32,7 @@ class DeployPHP implements Serializable {
 
 		this.base = sprintf('%s%s/%s/', [base, project, environment])
 
-		if(environment == 'live') {
+		if(environment in ['live', 'production']) {
 			this.path = sprintf('%srevisions/jenkins-%s-%s', [this.base, utils.getUnixEpoch(), build])
 		} else {
 			this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), build, utils.getRevision()])
