@@ -70,6 +70,7 @@ class DeployPHP implements Serializable {
 		commands += sprintf('rm -v %scurrent', [this.base])
  		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])				
 
+		commands += sprintf("cd %s", [this.path]) 		
  		commands += append
 
 		this.shell.ssh(commands) 		
