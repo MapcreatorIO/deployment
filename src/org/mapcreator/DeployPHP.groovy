@@ -75,4 +75,15 @@ class DeployPHP implements Serializable {
 
 		this.shell.scp(from, this.path)
 	}
+
+	def untarRelease(url, token, path) {
+		this.utils.sh("mkdir ${path}")
+		this.utils.sh("wget ${url}?access_token=${token} -O ${path}/output.tar.gz")
+		this.utils.sh("mkdir ${path}/temp")
+		this.utils.sh("tar xf ${path}/output.tar.gz -C ${path}/temp")
+		this.utils.sh("mkdir ${path}/output")
+		this.utils.sh("mv ${path}/temp/*/* ${path}/output")
+
+		return "${path}/output"
+	}
 }
