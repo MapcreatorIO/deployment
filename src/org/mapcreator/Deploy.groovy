@@ -4,7 +4,7 @@ import org.mapcreator.SecureShell
 import org.mapcreator.ShUtils
 import java.io.Serializable
 
-class DeployPHP implements Serializable {
+class Deploy implements Serializable {
 	protected String path
 	protected String base
 	protected String key
@@ -15,7 +15,7 @@ class DeployPHP implements Serializable {
 	protected SecureShell shell
 
 	def steps
-	DeployPHP(steps) {
+	Deploy(steps) {
 		this.steps = steps
 	}
 

@@ -1,7 +1,7 @@
 package org.mapcreator
-import org.mapcreator.DeployPHP
+import org.mapcreator.Deploy
 
-class DeployArt extends DeployPHP {
+class DeployArt extends Deploy {
 	DeployArt(steps) {
 		super(steps)
 	}
