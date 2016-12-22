@@ -1,4 +1,4 @@
-def listRecursive(loc, ext) {
+def listRecursive(File loc, ext) {
 	def files = []
 
 	for(file in loc.listFiles()) {
@@ -7,7 +7,7 @@ def listRecursive(loc, ext) {
 				files << file.getName()
 			}
 		} else {
-			files += getFileS(file)
+			files += listRecursive(file, ext)
 		}
 	}
 
