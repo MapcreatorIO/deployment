@@ -1,7 +1,7 @@
 def listRecursive(loc, ext) {
 	def files = []
 
-	for(file in loc.listFiles() {
+	for(file in loc.listFiles()) {
 		if(file.isFile()) {
 			if(file.getName().endsWith(ext)) {
 				files << file.getName()
