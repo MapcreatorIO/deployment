@@ -1,8 +1,3 @@
-enum Stages {
+enum Checkpoints {
 	CHECKOUT, INITIALIZE, MIGRATE, TEST, COVERAGE, BUILD, DEPLOY
-}
-
-
-def call() {
-	return Stages
 }
