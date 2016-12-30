@@ -1,3 +1,3 @@
-enum Checkpoints {
+enum Point {
 	CHECKOUT, INITIALIZE, MIGRATE, TEST, COVERAGE, BUILD, DEPLOY
 }
