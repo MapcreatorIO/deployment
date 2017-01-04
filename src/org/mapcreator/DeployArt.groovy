@@ -24,7 +24,7 @@ class DeployArt extends Deploy {
 	}
 
 	@Override
-	def finish(List shared = [], List prepend = [], List append = []) {
+	def finish(List shared = [], List prepend = [], List append = [], String webUser = 'www-data', String webGroup = 'www-data') {
 		List commands = []
 		commands += prepend
 
@@ -32,7 +32,7 @@ class DeployArt extends Deploy {
 			commands += sprintf('rm -rv %s/%s || true', [this.path, item])
 			commands += sprintf('ln -sv %sshared/%s %s/%s', [this.base, item, this.path, item])
 		}
-		
+
 		commands += sprintf('cd %s', [this.path])
 		commands += 'php artisan migrate'
 		commands += 'php artisan route:cache'
@@ -40,7 +40,9 @@ class DeployArt extends Deploy {
 
 		commands += sprintf('rm -v %scurrent', [this.base])
 		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])
+		commands += sprintf("sudo chown %s:%s %s", [webUser, webGroup, this.path])
 
+		commands += sprintf("cd %s", [this.path])
 		commands += append
 
 		this.shell.ssh(commands)

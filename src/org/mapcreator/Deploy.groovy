@@ -42,7 +42,7 @@ class Deploy implements Serializable {
 	def unStash() {
 		steps.echo 'Unstashing'
 
-		steps.step([$class: 'WsCleanup'])		
+		steps.step([$class: 'WsCleanup'])
 		steps.unstash 'deployable'
 	}
 
@@ -51,29 +51,30 @@ class Deploy implements Serializable {
 		commands += prepend
 
 		commands += sprintf('mkdir -pv %s %sshared', [this.path, this.base])
-		commands += sprintf('cd %s', [this.path])		
+		commands += sprintf('cd %s', [this.path])
 
 		commands += append
 
-		this.shell.ssh(commands)		
+		this.shell.ssh(commands)
 	}
 
-	def finish(List shared = [], List prepend = [], List append = []) {
+	def finish(List shared = [], List prepend = [], List append = [], String webUser, String webGroup) {
 		List commands = []
 		commands += prepend
 
 		for(item in shared) {
 			commands += sprintf('rm -rv %s/%s || true', [this.path, item])
-			commands += sprintf('ln -sv %sshared/%s %s/%s', [this.base, item, this.path, item])									
+			commands += sprintf('ln -sv %sshared/%s %s/%s', [this.base, item, this.path, item])
 		}
 
 		commands += sprintf('rm -v %scurrent', [this.base])
- 		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])				
+ 		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])
+		commands += sprintf("sudo chown %s:%s %s", [webUser, webGroup, this.path])
 
-		commands += sprintf("cd %s", [this.path]) 		
+		commands += sprintf("cd %s", [this.path])
  		commands += append
 
-		this.shell.ssh(commands) 		
+		this.shell.ssh(commands)
 	}
 
 	def copy(String from) {
