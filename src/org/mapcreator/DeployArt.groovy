@@ -43,7 +43,7 @@ class DeployArt extends Deploy {
 
 		commands += sprintf("cd %s", [this.path])
 		commands += append
-		commands += sprintf("sudo chown %s:%s %s", [webUser, webGroup, this.path])		
+		commands += sprintf("sudo chown -R %s:%s %s", [webUser, webGroup, this.path])		
 
 		this.shell.ssh(commands)
 	}
