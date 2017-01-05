@@ -58,7 +58,7 @@ class Deploy implements Serializable {
 		this.shell.ssh(commands)
 	}
 
-	def finish(List shared = [], List prepend = [], List append = [], String webUser, String webGroup) {
+	def finish(List shared = [], List prepend = [], List append = [], String webUser = 'www-data', String webGroup = 'www-data') {
 		List commands = []
 		commands += prepend
 
