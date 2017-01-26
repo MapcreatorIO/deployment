@@ -34,16 +34,20 @@ class DeployArt extends Deploy {
 		}
 
 		commands += sprintf('cd %s', [this.path])
+
+		commands += 'php artisan down'
 		commands += 'php artisan migrate'
 		commands += 'php artisan route:cache'
 		commands += 'php artisan config:cache'
+		commands += 'php artisan migrate'
 
 		commands += sprintf('rm -v %scurrent', [this.base])
 		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])
 
-		commands += sprintf("cd %s", [this.path])
 		commands += append
-		commands += sprintf("sudo chown -R %s:%s %s", [webUser, webGroup, this.path])		
+		commands += sprintf("sudo chown -R %s:%s %s", [webUser, webGroup, this.path])
+
+		commands += 'php artisan up'
 
 		this.shell.ssh(commands)
 	}
