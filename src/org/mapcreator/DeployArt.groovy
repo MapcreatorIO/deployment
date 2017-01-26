@@ -39,7 +39,6 @@ class DeployArt extends Deploy {
 		commands += 'php artisan migrate'
 		commands += 'php artisan route:cache'
 		commands += 'php artisan config:cache'
-		commands += 'php artisan migrate'
 
 		commands += sprintf('rm -v %scurrent', [this.base])
 		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])
