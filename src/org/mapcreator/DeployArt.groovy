@@ -44,9 +44,9 @@ class DeployArt extends Deploy {
 		commands += sprintf('ln -svf %s %scurrent', [this.path, this.base])
 
 		commands += append
-		commands += sprintf("sudo chown -R %s:%s %s", [webUser, webGroup, this.path])
-
 		commands += 'php artisan up'
+
+		commands += sprintf("sudo chown -R %s:%s %s", [webUser, webGroup, this.path])
 
 		this.shell.ssh(commands)
 	}
