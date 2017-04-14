@@ -15,7 +15,7 @@ class DeployArt extends Deploy {
 		List commands = []
 		commands += prepend
 
-		commands += sprintf('sudo /usr/local/bin/limit-revisions %s/revisions/ 10 debug', [this.base])
+		commands += sprintf('sudo /usr/local/bin/limit-revisions %srevisions/ 10', [this.base])
 		commands += sprintf('mkdir -pv %s %sshared', [this.path, this.base])
 		commands += sprintf('cd %s', [this.path])
 
