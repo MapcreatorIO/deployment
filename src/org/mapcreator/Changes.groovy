@@ -19,12 +19,7 @@ class Changes implements Serializable {
         def git = GitHub.connect(this.username, this.key)
         def repo = git.getRepository(this.repo)
 
-        try {
-            def changes = repo.getCommit(sha)
-
-            return changes.getFiles()
-        } finally {
-            return []
-        }
+        def changes = repo.getCommit(sha)
+        return changes.getFiles()
     }
 }
