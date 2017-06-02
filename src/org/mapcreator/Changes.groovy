@@ -17,9 +17,9 @@ class Changes implements Serializable {
     }
 
     def log(String message) {
-        if(!debug) return;
+        if(!debug) return
 
-
+        println(message)
     }
     
     @NonCPS
