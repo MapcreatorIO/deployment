@@ -16,7 +16,7 @@ class Changes implements Serializable {
     
     @NonCPS
     def getByCommit(sha) {
-        def git = Github.connect(this.username, this.key)
+        def git = GitHub.connect(this.username, this.key)
         def repo = git.getRepository(this.repo)
         
         def files = []
