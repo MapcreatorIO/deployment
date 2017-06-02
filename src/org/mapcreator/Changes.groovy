@@ -35,11 +35,8 @@ class Changes implements Serializable {
         def files = []
 
         for(item in changes.getFiles()) {
-            this.log("Found item " + item.getFileName()+"...")
-            def file = new GitFile()
-
-            file.init(item.getFileName(), item.getStatus())
-
+            file = new GitFile(name: item.getFileName(), status: item.getStatus())
+            this.log("Adding item ${file.name}")
             files += file
         }
 
