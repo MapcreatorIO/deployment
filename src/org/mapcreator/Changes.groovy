@@ -24,7 +24,7 @@ class Changes implements Serializable {
         def files = []
 
         for(item in changes.getFiles()) {
-            file = new GitFile()
+            def file = new GitFile()
             file.init(item.getFileName(), item.getStatus())
 
             files += file
