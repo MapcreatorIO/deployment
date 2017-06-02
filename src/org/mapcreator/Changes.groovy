@@ -20,17 +20,15 @@ class Changes implements Serializable {
         def repo = git.getRepository(this.repo)
         
         def files = []
-        
+
         try {
-                def changes = repo.getCommit(sha)
-        } catch(e) {
+            def changes = repo.getCommit(sha)
+
+            for(file in changes.getFiles()) {
+                files += file.getFileName()
+            }
+        } finally {
             return files
         }
-        
-        for(file in changes.getFiles()) {
-            files += file.getFileName()
-        }
-        
-        return files
     }
 }
