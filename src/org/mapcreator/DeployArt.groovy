@@ -25,7 +25,7 @@ class DeployArt extends Deploy {
 	}
 
 	@Override
-	def finish(List shared = [], List prepend = [], List append = [], String webUser = 'www-data', String webGroup = 'www-data') {
+	def finish(List shared = [], List prepend = [], List append = [], String webUser = 'www-data', String webGroup = 'www-data', Boolean migrate=true) {
 		List commands = []
 		commands += prepend
 
@@ -37,7 +37,11 @@ class DeployArt extends Deploy {
 		commands += sprintf('cd %s', [this.path])
 
 		commands += 'php artisan down'
-		commands += 'php artisan migrate'
+
+		if(migrate) {			
+			commands += 'php artisan migrate'
+		}
+
 		commands += 'php artisan route:cache'
 		commands += 'php artisan config:cache'
 
