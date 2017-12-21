@@ -31,7 +31,7 @@ class Release implements Serializable {
 	}
 	
 	@NonCPS
-	def getLatestHash(repo) {
+	def getTagName(repo) {
 		def git = GitHub.connect(this.username, this.key)
 		def repository = git.getRepository(repo)
 		def release = repository.listReleases()[0]
