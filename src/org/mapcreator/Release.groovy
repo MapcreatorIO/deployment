@@ -36,6 +36,6 @@ class Release implements Serializable {
 		def repository = git.getRepository(repo)
 		def release = repository.listReleases()[0]
 		
-		return release.	getTargetCommitish();
+		return release.getTagName();
 	}
 }
