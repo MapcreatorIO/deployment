@@ -38,6 +38,10 @@ class Deploy implements Serializable {
 			this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), build, utils.getRevision()])
 		}
 	}
+	
+	def getPath() {
+		return this.path
+	}
 
 	def unStash() {
 		steps.echo 'Unstashing'
