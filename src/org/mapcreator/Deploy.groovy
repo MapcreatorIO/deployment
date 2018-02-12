@@ -39,7 +39,7 @@ class Deploy implements Serializable {
 		}
 	}
 	
-	def getPath() {
+	def getDeployPath() {
 		return this.path
 	}
 
