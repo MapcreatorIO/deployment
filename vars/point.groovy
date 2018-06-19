@@ -1,3 +1,3 @@
-enum Point {
+enum point {
 	START, CHECKOUT, INITIALIZE, MIGRATE, BUILD, DEPLOY
 }
