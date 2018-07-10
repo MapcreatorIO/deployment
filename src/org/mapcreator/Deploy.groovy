@@ -42,6 +42,10 @@ class Deploy implements Serializable {
 	def getDeployPath() {
 		return this.path
 	}
+	
+	def getBasePath() {
+		return this.base
+	}
 
 	def unStash() {
 		steps.echo 'Unstashing'
