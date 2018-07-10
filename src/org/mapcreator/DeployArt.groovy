@@ -8,10 +8,6 @@ class DeployArt extends Deploy {
 
 	@Override
 	def prepare(List prepend = [], List append = []) {
-		this.steps.echo 'Installing composer'	
-		this.steps.sh 'composer install --no-interaction --no-progress --optimize-autoloader --no-suggest --no-dev'	
-		this.steps.sh 'composer dump-autoload --no-dev'
-		
 		List commands = []
 		commands += prepend
 
@@ -35,6 +31,9 @@ class DeployArt extends Deploy {
 		}
 
 		commands += sprintf('cd %s', [this.path])
+		
+		commands += 'composer install --no-interaction --no-progress --optimize-autoloader --no-suggest --no-dev'
+		commands += 'composer dump-autoload --no-dev'
 
 		commands += 'php artisan down'
 
