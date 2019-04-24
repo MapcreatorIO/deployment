@@ -5,4 +5,7 @@ def getIPsFromID(id, steps) {
 	steps.echo output
 }
 
+def call(id, steps) {
+	return getIpsFromID(id, steps)
+}
 // vim: set ft=groovy:
