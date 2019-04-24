@@ -38,6 +38,10 @@ class Deploy implements Serializable {
 			this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), build, utils.getRevision()])
 		}
 	}
+
+	def setHost(String host) {
+		this.host = host;
+	}
 	
 	def getDeployPath() {
 		return this.path
