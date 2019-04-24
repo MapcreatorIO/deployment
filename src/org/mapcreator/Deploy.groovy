@@ -41,6 +41,7 @@ class Deploy implements Serializable {
 
 	def setHost(String host) {
 		this.host = host;
+		this.shell.init(key, host, user, debug)
 	}
 	
 	def getDeployPath() {
