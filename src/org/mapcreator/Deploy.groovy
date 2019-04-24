@@ -23,7 +23,7 @@ class Deploy implements Serializable {
 					String key, String user, String host, Boolean debug = false) {
 		this.key = key
 		this.host = host
-		this.user = host
+		this.user = user
 		this.debug = debug
 
 		this.utils = new ShUtils(this.steps)
