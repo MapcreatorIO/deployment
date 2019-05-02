@@ -103,7 +103,8 @@ class Deploy implements Serializable {
 		this.steps.sh(sprintf("mkdir %s/temp", [path]))
 		this.steps.sh(sprintf("tar xf %s/output.tar.gz -C %s/temp", [path, path]))
 		this.steps.sh(sprintf("mkdir %s/output", [path]))
-		this.steps.sh(sprintf("mv %s/temp/*/{.,}* %s/output", [path, path]))
+		this.steps.sh(sprintf("cp -R %s/temp/*/. %s/output", [path, path]))
+		this.steps.sh(sprintf("rm -rf %s/temp", [path]))
 
 		return "${path}/output"
 	}
