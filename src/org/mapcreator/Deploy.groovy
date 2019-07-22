@@ -36,7 +36,7 @@ class Deploy implements Serializable {
 			this.path = sprintf('%srevisions/jenkins-%s-%s', [this.base, utils.getUnixEpoch(), build])
 		} else {
 			def revision = utils.getRevision()
-			print(sprintf("Revision is %s", [revision])
+			steps.echo sprintf("Revision is %s", [revision])
 			this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), build, revision])
 		}
 	}
