@@ -35,7 +35,7 @@ class ShUtils implements Serializable {
 	def getRevision() {
     	return steps.sh(
         	returnStdout: true,
-        	script: "if [ \$(git status 2&> /dev/null 1>&2; echo \$?) -eq 0 ]; then git rev-parse HEAD | cut -c1-6 | tail -1; else svn info . | sed -n -e 's/^Revision: //p'; fi"
+        	script: 'if [ $(git status 2&> /dev/null 1>&2; echo $?) -eq 0 ]; then git rev-parse HEAD | cut -c1-6 | tail -1; else svn info . | sed -n -e "s/^Revision: //p"; fi'
     	).trim()
 	}
 }
