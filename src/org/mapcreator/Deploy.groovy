@@ -35,7 +35,9 @@ class Deploy implements Serializable {
 		if(environment in ['live', 'production']) {
 			this.path = sprintf('%srevisions/jenkins-%s-%s', [this.base, utils.getUnixEpoch(), build])
 		} else {
-			this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), build, utils.getRevision()])
+			def revision = utils.getRevision()
+			print(sprintf("Revision is %s", [revision])
+			this.path = sprintf('%srevisions/jenkins-%s-%s-%s', [this.base, utils.getUnixEpoch(), build, revision])
 		}
 	}
 
